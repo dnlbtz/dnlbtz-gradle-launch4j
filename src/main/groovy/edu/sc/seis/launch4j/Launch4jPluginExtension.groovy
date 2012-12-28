@@ -30,6 +30,7 @@ class Launch4jPluginExtension implements Serializable {
     String icon = ""
     String version = ""
     String copyright = "unknown"
+	String originalFilename
     String opt = ""
 	
 	String bundledJrePath
@@ -70,6 +71,7 @@ class Launch4jPluginExtension implements Serializable {
         result = prime * result + ((chdir == null) ? 0 : chdir.hashCode());
         result = prime * result + (cmdLine ? 1231 : 1237);
         result = prime * result + ((copyright == null) ? 0 : copyright.hashCode());
+		result = prime * result + ((originalFilename) ? 0 : originalFilename.hashCode());
         result = prime * result + (customProcName ? 1231 : 1237);
         result = prime * result + (dontWrapJar ? 1231 : 1237);
         result = prime * result + ((downloadUrl == null) ? 0 : downloadUrl.hashCode());
@@ -130,6 +132,14 @@ class Launch4jPluginExtension implements Serializable {
 				
         } 
 		else if (!copyright.equals(other.copyright))
+            return false;
+
+        if (originalFilename == null) {
+            if (other.originalFilename != null)
+                return false;
+				
+        } 
+		else if (!originalFilename.equals(other.originalFilename))
             return false;
 			
         if (customProcName != other.customProcName)
